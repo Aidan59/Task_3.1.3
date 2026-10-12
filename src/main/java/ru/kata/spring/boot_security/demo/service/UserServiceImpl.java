@@ -57,7 +57,8 @@ public class UserServiceImpl implements UserService{
         existing.setSalary(user.getSalary());
         existing.setPosition(user.getPosition());
         existing.setEmploymentType(user.getEmploymentType());
-        existing.setRoles(user.getRoles());
+        existing.getRoles().retainAll(user.getRoles());
+        existing.getRoles().addAll(user.getRoles());
 
         if (user.getPassword() != null && !user.getPassword().isBlank()) {
             existing.setPassword(passwordEncoder.encode(user.getPassword()));
